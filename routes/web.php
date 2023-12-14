@@ -18,5 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/bulk-upload', [App\Http\Controllers\CityController::class, 'bulkUpload'])->name('bulk_upload');
+Route::post('/bulk-upload', [App\Http\Controllers\CityController::class, 'bulkUpload'])->name('bulk_upload_upload');
 
 Auth::routes();
