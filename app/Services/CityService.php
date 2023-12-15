@@ -46,4 +46,8 @@ class CityService
         return $this->cityRepository->states_countries();
     }
 
+    public function search(){
+        return $this->cityRepository->search();
+    }
+
 }

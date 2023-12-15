@@ -1,21 +1,21 @@
-<?php 
+<?php
 
 namespace App\Repositories;
 
 use App\Models\City;
-Use App\Jobs\ExcelImportJob;
+use App\Jobs\ExcelImportJob;
 
 class CityRepository
 {
     public function all()
     {
 
-        
+
         return City::where(function ($query) {
-           
+
             \request()->state_name ? $query->where('state_name', \request()->state_name) : "";
             \request()->county_name ? $query->where('county_name', \request()->county_name) : "";
-           
+
             return $query;
         })->get();
     }
@@ -42,21 +42,34 @@ class CityRepository
         return City::destroy($id);
     }
 
-    public function bulk_upload($data){
+    public function bulk_upload($data)
+    {
 
-        
-    $file = $data->file('file')->storeAs('imports', 'import-file.xlsx', 'public');
 
-    $jobId = uniqid();
-   
-    ExcelImportJob::dispatch($file, $jobId)->onQueue('imports');
+        $file = $data->file('file')->storeAs('imports', 'import-file.xlsx', 'public');
+
+        $jobId = uniqid();
+
+        ExcelImportJob::dispatch($file, $jobId)->onQueue('imports');
 
         return $jobId;
     }
 
-    public function states_countries(){
+    public function states_countries()
+    {
         $data['state_names'] = City::distinct()->pluck('state_name');
         $data['county_name'] = City::distinct()->pluck('county_name');
-       return $data;
+        return $data;
+    }
+
+    public function search()
+    {
+        $key_word = \request()->keyword;
+        if (isset($key_word)) {
+            return City::where('state_name', 'LIKE', '%' . $key_word . '%')
+                ->orWhere('county_name', 'LIKE', '%' . $key_word . '%')->get();
+        } else {
+            return [];
+        }
     }
 }
