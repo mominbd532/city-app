@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/city', [App\Http\Controllers\CityController::class, 'index'])->name('index');
+Route::get('/city', [App\Http\Controllers\CityController::class, 'index'])->name('city_list');
 Route::get('/bulk-upload', [App\Http\Controllers\CityController::class, 'bulkUpload'])->name('bulk_upload');
 Route::post('/bulk-upload', [App\Http\Controllers\CityController::class, 'bulkUpload'])->name('bulk_upload_upload');
 

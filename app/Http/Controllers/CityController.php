@@ -20,8 +20,9 @@ class CityController extends Controller
     public function index()
     {
         $getAllCites =  $this->cityService->getAllCites(); 
+        $statesCountries =  $this->cityService->statesCountries(); 
 
-        return view('admin.city.index',compact('getAllCites'));
+        return view('admin.city.index',compact('getAllCites','statesCountries'));
     }
 
     /**
@@ -78,7 +79,7 @@ class CityController extends Controller
                 'file' => 'required',
             ]);
          
-            $jobId = $this->cityService->bulk_upload($request); 
+            $jobId = $this->cityService->bulkUpload($request); 
             return view('admin.city.bulk-upload', compact('jobId'));
 
         }else{

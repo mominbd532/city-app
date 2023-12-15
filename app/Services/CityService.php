@@ -38,8 +38,12 @@ class CityService
         return $this->cityRepository->delete($id);
     }
 
-    public function bulk_upload($data){
+    public function bulkUpload($data){
         return $this->cityRepository->bulk_upload($data);
+    }
+
+    public function statesCountries(){
+        return $this->cityRepository->states_countries();
     }
 
 }

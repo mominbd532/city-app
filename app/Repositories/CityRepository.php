@@ -9,7 +9,15 @@ class CityRepository
 {
     public function all()
     {
-        return City::all();
+
+        
+        return City::where(function ($query) {
+           
+            \request()->state_name ? $query->where('state_name', \request()->state_name) : "";
+            \request()->county_name ? $query->where('county_name', \request()->county_name) : "";
+           
+            return $query;
+        })->get();
     }
 
     public function find($id)
@@ -44,5 +52,11 @@ class CityRepository
     ExcelImportJob::dispatch($file, $jobId)->onQueue('imports');
 
         return $jobId;
+    }
+
+    public function states_countries(){
+        $data['state_names'] = City::distinct()->pluck('state_name');
+        $data['county_name'] = City::distinct()->pluck('county_name');
+       return $data;
     }
 }
