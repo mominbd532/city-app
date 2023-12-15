@@ -17,7 +17,7 @@
                         <li class="nav-item">
                             <a class="nav-link me-lg-3" href="{{ url('/home') }}">Home</a></li>
                         @else
-                        <li class="nav-item" href="{{ route('login') }}"><a class="nav-link me-lg-3" href="#download">Log In</a></li>
+                        <li class="nav-item" ><a class="nav-link me-lg-3" href="{{ route('login') }}">Log In</a></li>
                         @if (Route::has('register'))
                         <li class="nav-item"><a class="nav-link me-lg-3" href="{{ route('register') }}">Register</a></li>
                         @endif

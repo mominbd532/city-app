@@ -12,3 +12,11 @@
         <p>City</p>
     </a>
 </li>
+
+
+<li class="nav-item">
+    <a href="{{ route('bulk_upload') }}" class="nav-link {{ Request::is('bulk-upload') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-th"></i>
+        <p>City Bulk Upload</p>
+    </a>
+</li>

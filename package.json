@@ -18,9 +18,11 @@
     },
     "dependencies": {
         "@vitejs/plugin-vue": "^4.5.2",
+        "@vueuse/core": "^10.7.0",
         "laravel-echo": "^1.15.3",
         "pusher-js": "^8.4.0-rc2",
         "vue": "^3.2.36",
+        "vue-axios": "^3.5.2",
         "vue-loader": "^17.3.1"
     }
 }
