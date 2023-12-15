@@ -2,20 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\CityService;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
-    public function __construct()
+    protected $cityService;
+    
+    public function __construct(CityService $cityService)
     {
         $this->middleware('auth');
+        $this->cityService = $cityService;
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $getAllCites =  $this->cityService->getAllCites(); 
+
+        return view('admin.city.index',compact('getAllCites'));
     }
 
     /**
@@ -69,11 +75,11 @@ class CityController extends Controller
     public function bulkUpload(Request $request){
         if($request->method() == 'POST'){
             $validated = $request->validate([
-                'file' => 'required|mimes:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                
+                'file' => 'required',
             ]);
          
-            return 'ok';
+            $jobId = $this->cityService->bulk_upload($request); 
+            return view('admin.city.bulk-upload', compact('jobId'));
 
         }else{
             return view('admin.city.bulk-upload');

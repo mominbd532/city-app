@@ -37,4 +37,9 @@ class CityService
     {
         return $this->cityRepository->delete($id);
     }
+
+    public function bulk_upload($data){
+        return $this->cityRepository->bulk_upload($data);
+    }
+
 }

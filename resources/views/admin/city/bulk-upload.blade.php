@@ -6,12 +6,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>General Form</h1>
+                    <h1>City Bulk Upload</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">General Form</li>
+                        <li class="breadcrumb-item active">City Bulk Upload</li>
                     </ol>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="/bulk-upload" method="post">
+                        <form action="/bulk-upload" method="post" enctype="multipart/form-data">
                             <div class="card-body">
                                 @csrf
                                 <div class="form-group">

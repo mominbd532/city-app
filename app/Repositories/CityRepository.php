@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\City;
+Use App\Jobs\ExcelImportJob;
 
 class CityRepository
 {
@@ -31,5 +32,17 @@ class CityRepository
     public function delete($id)
     {
         return City::destroy($id);
+    }
+
+    public function bulk_upload($data){
+
+        
+    $file = $data->file('file')->storeAs('imports', 'import-file.xlsx', 'public');
+
+    $jobId = uniqid();
+   
+    ExcelImportJob::dispatch($file, $jobId)->onQueue('imports');
+
+        return $jobId;
     }
 }

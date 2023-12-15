@@ -28,7 +28,7 @@ return new class extends Migration
             $table->boolean('incorporated');
             $table->string('timezone');
             $table->tinyInteger('ranking');
-            $table->bigInteger('zips');
+            $table->string('zips')->nullable();
             $table->bigInteger('id')->unique();
             $table->timestamps();
 
